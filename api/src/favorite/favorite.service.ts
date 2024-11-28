@@ -1,26 +1,51 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFavoriteDto } from './dto/create-favorite.dto';
 import { UpdateFavoriteDto } from './dto/update-favorite.dto';
+import { Favorite } from './entities/favorite.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { RestaurantService } from 'src/restaurant/restaurant.service';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class FavoriteService {
-  create(createFavoriteDto: CreateFavoriteDto) {
-    return 'This action adds a new favorite';
+  constructor(
+    @InjectRepository(Favorite)
+    private favoriteRepository: Repository<Favorite>,
+    private userService: UsersService,
+    private restaurantService: RestaurantService,
+  ) {}
+
+  async create(createFavoriteDto: CreateFavoriteDto) {
+    const favorite = this.favoriteRepository.create({
+      user: await this.userService.findOne(createFavoriteDto.userId),
+      restaurant: await this.restaurantService.findOne(
+        createFavoriteDto.restaurantId,
+      ),
+    });
+    return this.favoriteRepository.save(favorite);
   }
 
   findAll() {
-    return `This action returns all favorite`;
+    return this.favoriteRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} favorite`;
+  findOne(id: string) {
+    return this.favoriteRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateFavoriteDto: UpdateFavoriteDto) {
-    return `This action updates a #${id} favorite`;
+  async update(id: string, updateFavoriteDto: UpdateFavoriteDto) {
+    const favorite = await this.favoriteRepository.preload({
+      id: id,
+      user: await this.userService.findOne(updateFavoriteDto.userId),
+      restaurant: await this.restaurantService.findOne(
+        updateFavoriteDto.restaurantId,
+      ),
+    });
+    return this.favoriteRepository.save(favorite);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} favorite`;
+  async remove(id: string) {
+    return this.favoriteRepository.delete(id);
   }
 }
