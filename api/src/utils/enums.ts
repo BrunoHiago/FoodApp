@@ -1,0 +1,15 @@
+export enum Category {
+  LANCHES = 'Lanches',
+  JAPONESA = 'Japonesa',
+  PIZZA = 'Pizza',
+  BRASILEIRA = 'Brasileira',
+  ITALIANA = 'Italiana',
+  CHINESA = 'Chinesa',
+  MEXICANA = 'Mexicana',
+  VEGETARIANA = 'Vegetariana',
+  DOCES = 'Doces',
+  BEBIDAS = 'Bebidas',
+  CAFETERIA = 'Cafeteria',
+  SORVETES = 'Sorvetes',
+  SAUDAVEL = 'Saudável',
+}
