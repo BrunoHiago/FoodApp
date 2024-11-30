@@ -25,7 +25,16 @@ export class ProductService {
   }
 
   async findAll(): Promise<Product[]> {
-    return await this.productRepository.find();
+    const products = await this.productRepository.find({
+      relations: ['restaurant'],
+    });
+
+    return products.map((product) => {
+      return {
+        ...product,
+        restaurantId: product.restaurant.id,
+      };
+    });
   }
 
   async findOne(id: string): Promise<Product> {
