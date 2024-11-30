@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { RestaurantModule } from './restaurant/restaurant.module';
 import { ProductModule } from './product/product.module';
 import { FavoriteModule } from './favorite/favorite.module';
+import { PopulateModule } from './populate/populate.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { FavoriteModule } from './favorite/favorite.module';
     RestaurantModule,
     ProductModule,
     FavoriteModule,
+    PopulateModule,
   ],
   controllers: [AppController],
   providers: [AppService],

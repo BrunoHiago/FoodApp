@@ -9,5 +9,6 @@ import { RestaurantModule } from 'src/restaurant/restaurant.module';
   imports: [TypeOrmModule.forFeature([Product]), RestaurantModule],
   controllers: [ProductController],
   providers: [ProductService],
+  exports: [ProductService],
 })
 export class ProductModule {}

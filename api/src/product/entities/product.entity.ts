@@ -1,5 +1,4 @@
 import { Restaurant } from 'src/restaurant/entities/restaurant.entity';
-import { Category } from 'src/utils/enums';
 import {
   Column,
   CreateDateColumn,
@@ -20,14 +19,11 @@ export class Product {
   @Column()
   description: string;
 
-  @Column()
+  @Column({ type: 'decimal' })
   price: number;
 
-  @Column({
-    type: 'enum',
-    enum: Category,
-  })
-  category: Category;
+  @Column()
+  category: string;
 
   @Column()
   photo: string;

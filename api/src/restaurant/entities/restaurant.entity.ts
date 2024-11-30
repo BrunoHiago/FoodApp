@@ -33,7 +33,7 @@ export class Restaurant {
   @Column()
   photo: string;
 
-  @Column()
+  @Column({ type: 'decimal' })
   rating: number;
 
   @Column({
