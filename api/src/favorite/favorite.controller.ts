@@ -28,11 +28,6 @@ export class FavoriteController {
     return this.favoriteService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.favoriteService.findOne(id);
-  }
-
   @Get('user/:userId')
   findFavoritesByUser(@Param('userId') userId: string) {
     return this.favoriteService.findFavoritesByUser(userId);

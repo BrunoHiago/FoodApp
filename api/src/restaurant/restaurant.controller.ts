@@ -23,14 +23,9 @@ export class RestaurantController {
     return this.restaurantService.create(createRestaurantDto);
   }
 
-  @Get()
-  findAll() {
-    return this.restaurantService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.restaurantService.findOne(id);
+  @Get(':userId')
+  findAll(@Param('userId') userId: string) {
+    return this.restaurantService.findAll(userId);
   }
 
   @Patch(':id')

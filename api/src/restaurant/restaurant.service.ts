@@ -17,8 +17,25 @@ export class RestaurantService {
     return await this.restaurantRepository.save(createRestaurantDto);
   }
 
-  async findAll(): Promise<Restaurant[]> {
-    return await this.restaurantRepository.find();
+  async findAll(userId: string) {
+    const restaurants = await this.restaurantRepository.find({
+      relations: ['favorites', 'favorites.user'],
+    });
+
+    console.log(restaurants);
+
+    return restaurants
+      .map((restaurant) => {
+        return {
+          ...restaurant,
+          favorite: restaurant.favorites
+            .map((favorite) => favorite.user.id)
+            .includes(userId),
+        };
+      })
+      .sort((a, b) => {
+        return a.rating > b.rating ? -1 : 1;
+      });
   }
 
   async findOne(id: string): Promise<Restaurant> {
