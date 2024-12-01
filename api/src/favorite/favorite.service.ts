@@ -39,7 +39,6 @@ export class FavoriteService {
       relations: ['restaurant', 'user'],
       where: { user: { id: userId } },
     });
-    console.log(favorite);
     return favorite.map((favorite) => favorite.restaurant);
   }
 
@@ -54,7 +53,14 @@ export class FavoriteService {
     return this.favoriteRepository.save(favorite);
   }
 
-  async remove(id: string) {
-    return this.favoriteRepository.delete(id);
+  async remove(userId: string, restaurantId: string) {
+    const favorite = await this.favoriteRepository.findOne({
+      relations: ['restaurant', 'user'],
+      where: {
+        user: { id: userId },
+        restaurant: { id: restaurantId },
+      },
+    });
+    return this.favoriteRepository.remove(favorite);
   }
 }

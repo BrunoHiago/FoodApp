@@ -46,8 +46,11 @@ export class FavoriteController {
     return this.favoriteService.update(id, updateFavoriteDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.favoriteService.remove(id);
+  @Delete(':userId/:restaurantId')
+  remove(
+    @Param('userId') userId: string,
+    @Param('restaurantId') restaurantId: string,
+  ) {
+    return this.favoriteService.remove(userId, restaurantId);
   }
 }
