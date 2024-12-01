@@ -33,6 +33,11 @@ export class FavoriteController {
     return this.favoriteService.findOne(id);
   }
 
+  @Get('user/:userId')
+  findFavoritesByUser(@Param('userId') userId: string) {
+    return this.favoriteService.findFavoritesByUser(userId);
+  }
+
   @Patch(':id')
   update(
     @Param('id') id: string,

@@ -34,6 +34,15 @@ export class FavoriteService {
     return this.favoriteRepository.findOne({ where: { id } });
   }
 
+  async findFavoritesByUser(userId: string) {
+    const favorite = await this.favoriteRepository.find({
+      relations: ['restaurant', 'user'],
+      where: { user: { id: userId } },
+    });
+    console.log(favorite);
+    return favorite.map((favorite) => favorite.restaurant);
+  }
+
   async update(id: string, updateFavoriteDto: UpdateFavoriteDto) {
     const favorite = await this.favoriteRepository.preload({
       id: id,
