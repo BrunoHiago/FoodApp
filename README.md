@@ -46,7 +46,7 @@
     ```
     > **Importante:**  
     > Crie um arquivo `.env` na raiz do projeto, baseado no `.env.example`. Configure as variáveis de ambiente, especialmente as informações de conexão com o banco de dados.
-3. Popular o banco de dados: Para adicionar dados iniciais (restaurantes e produtos) ao banco de dados, acesse o seguinte endpoint no navegador ou ferramenta como Postman:
+3. Popular o banco de dados: Para adicionar dados iniciais (restaurantes e produtos) ao banco de dados, acesse o seguinte endpoint no navegador ou ferramenta como Postman: localhost:3000/populate
 
 ### 📱 Instalação e Configuração do Aplicativo (Frontend):
 1. Instale o APK em um dispositivo Android:
