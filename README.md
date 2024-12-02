@@ -34,8 +34,8 @@
 ### 🚀 Backend::
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/foodapp-backend.git
-   cd foodapp-backend
+   git clone https://github.com/BrunoHiago/FoodApp.git
+   cd FoodApp
     ```
 2. Instale as dependências e inicie o backend:
    ```bash
